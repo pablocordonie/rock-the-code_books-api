@@ -10,6 +10,12 @@ app.use(express.urlencoded({ extended: false }));
 const { connectDB } = require('./src/config/db');
 connectDB();
 
+const booksRouter = require('./src/api/routes/book.routes');
+app.use('/api/v1/books', booksRouter);
+
+const editorialsRouter = require('./src/api/routes/editorial.routes');
+app.use('/api/v1/editorials', editorialsRouter);
+
 const pong = (req, res, next) => res.status(200).json('Pong!');
 app.use('/ping', pong);
 
