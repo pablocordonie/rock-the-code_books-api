@@ -7,8 +7,7 @@
     "books": "node src/utils/seeds/book.seed.js",
     "dev": "nodemon index.js",
     "editorials": "node src/utils/seeds/editorial.seed.js",
-    "start": "node index.js",
-    "users": "node src/utils/seeds/user.seed.js"
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",

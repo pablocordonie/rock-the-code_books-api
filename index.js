@@ -10,24 +10,19 @@ app.use(express.urlencoded({ extended: false }));
 const { connectDB } = require('./src/config/db');
 connectDB();
 
+const pong = (req, res, next) => res.status(200).json('Pong!');
+app.use('/ping', pong);
+
 const booksRouter = require('./src/api/routes/book.routes');
 app.use('/api/v1/books', booksRouter);
 
 const editorialsRouter = require('./src/api/routes/editorial.routes');
 app.use('/api/v1/editorials', editorialsRouter);
 
-const pong = (req, res, next) => res.status(200).json('Pong!');
-app.use('/ping', pong);
+const usersRouter = require('./src/api/routes/user.routes');
+app.use('/api/v1/users', usersRouter);
 
-app.use('*', (req, res, next) => {
-    const error = new Error('Route not found');
-    error.status = 404;
-    next(error);
-});
-
-app.use((err, req, res, next) => {
-    return res.status(err.status || 500).json(err.message || 'Unexpected error');
-});
+app.use('*', (req, res, next) => res.status(404).json('Route not found'));
 
 app.listen(PORT, () => {
     console.log(`Listening on: ${LOCALHOST}`);
