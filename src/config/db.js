@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
-const connectDB = () => {
+const connectDB = async () => {
     try {
-        mongoose.connect(process.env.DB_URL);
+        await mongoose.connect(process.env.DB_URL);
         console.log('Database connection status: online');
     } catch (error) {
         console.log('Database connection status: offline // Connection error: ', error);
