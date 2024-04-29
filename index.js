@@ -13,14 +13,8 @@ connectDB();
 const pong = (req, res, next) => res.status(200).json('Pong!');
 app.use('/ping', pong);
 
-const booksRouter = require('./src/api/routes/book.routes');
-app.use('/api/v1/books', booksRouter);
-
-const editorialsRouter = require('./src/api/routes/editorial.routes');
-app.use('/api/v1/editorials', editorialsRouter);
-
-const usersRouter = require('./src/api/routes/user.routes');
-app.use('/api/v1/users', usersRouter);
+const mainRouter = require('./src/api/routes/router');
+app.use('/api/v1', mainRouter);
 
 app.use('*', (req, res, next) => res.status(404).json('Route not found'));
 
